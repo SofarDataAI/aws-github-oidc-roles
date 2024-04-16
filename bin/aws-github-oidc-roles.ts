@@ -44,7 +44,7 @@ const stackProps: AwsGithubOidcRolesStackProps = {
 };
 new AwsGithubOidcRolesStack(app, `AwsGithubOidcRolesStack`, {
   ...stackProps,
-  stackName: `${appName}-${deployEnvironment}-AwsGithubOidcRolesStack`,
+  stackName: `${appName}-${deployEnvironment}-${cdkRegion}-AwsGithubOidcRolesStack`,
   description: `AwsGithubOidcRolesStack for ${appName} in ${cdkRegion} ${deployEnvironment}.`,
 });
 

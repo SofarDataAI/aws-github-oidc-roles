@@ -1,21 +1,51 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
+
 import * as cdk from 'aws-cdk-lib';
+import * as dotenv from 'dotenv';
+import { Aspects } from 'aws-cdk-lib';
+import { ApplyTags } from '../utils/apply-tag';
+import { checkEnvVariables } from '../utils/check-environment-variable';
+import { AwsGithubOidcRolesStackProps } from '../lib/AwsGithubOidcRolesStackProps';
 import { AwsGithubOidcRolesStack } from '../lib/aws-github-oidc-roles-stack';
 
+dotenv.config(); // Load environment variables from .env file
 const app = new cdk.App();
-new AwsGithubOidcRolesStack(app, 'AwsGithubOidcRolesStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
+const appAspects = Aspects.of(app);
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+const { CDK_DEFAULT_ACCOUNT: account, CDK_DEFAULT_REGION: region } = process.env;
 
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
+const cdkRegion = process.env.CDK_DEPLOY_REGION!;
+const deployEnvironment = process.env.ENVIRONMENT!;
 
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+// check environment variables
+checkEnvVariables('APP_NAME', 'GITHUB_ORG_NAME', 'GITHUB_REPOS_NAME', 'OPENID_CONNECT_PROVIDER_ARN', 'OWNER');
+const appName = process.env.APP_NAME!;
+const owner = process.env.OWNER!;
+
+appAspects.add(new ApplyTags({
+  environment: deployEnvironment as 'development' | 'staging' | 'production' | 'demonstration',
+  project: appName,
+  owner: owner,
+}));
+
+const stackProps: AwsGithubOidcRolesStackProps = {
+  resourcePrefix: `${appName}-${deployEnvironment}`,
+  env: {
+      region: cdkRegion,
+      account,
+  },
+  deployRegion: cdkRegion,
+  deployEnvironment,
+  appName,
+  githubOrgName: process.env.GITHUB_ORG_NAME!,
+  githubReposName: process.env.GITHUB_REPOS_NAME!.split(','),
+  openIdConnectProviderArn: process.env.OPENID_CONNECT_PROVIDER_ARN!,
+};
+new AwsGithubOidcRolesStack(app, `AwsGithubOidcRolesStack`, {
+  ...stackProps,
+  stackName: `${appName}-${deployEnvironment}-AwsGithubOidcRolesStack`,
+  description: `AwsGithubOidcRolesStack for ${appName} in ${cdkRegion} ${deployEnvironment}.`,
 });
+
+app.synth();

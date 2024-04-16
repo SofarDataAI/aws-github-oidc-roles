@@ -27,7 +27,7 @@ export class AwsGithubOidcRolesStack extends cdk.Stack {
         provider: provider,
         owner: props.githubOrgName,
         repo: repoName,
-        roleName: `${props.resourcePrefix}-oidc-role-${repoName}`,
+        roleName: `${props.resourcePrefix}-${repoName}`,
         description: `This role deploys stuff to AWS for ${props.githubOrgName}-${repoName}.`,
         maxSessionDuration: cdk.Duration.hours(2),
       });

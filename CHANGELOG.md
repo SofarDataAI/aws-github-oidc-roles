@@ -1,3 +1,11 @@
+## 2024-04-18
+
+### Added
+- Added import statement for `cdk-nag` in `bin/aws-github-oidc-roles.ts`
+- Added `appAspects.add(new ApplyTags({...}))` to apply tags to all resources in `bin/aws-github-oidc-roles.ts`
+- Updated version from 0.2.0 to 0.2.1 in `package-lock.json` and `package.json`
+- Updated dependencies: `@aws-sdk/client-iam`, `@aws-sdk/client-sso-oidc`, `cdk-nag` in `package-lock.json` and `package.json
+
 ## 2024-04-16
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "aws-github-oidc-roles",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": {
     "aws-github-oidc-roles": "bin/aws-github-oidc-roles.js"
   },
@@ -21,8 +21,8 @@
     "typescript": "~5.4.5"
   },
   "dependencies": {
-    "@aws-sdk/client-iam": "^3.554.0",
-    "@aws-sdk/client-sso-oidc": "^3.554.0",
+    "@aws-sdk/client-iam": "^3.556.0",
+    "@aws-sdk/client-sso-oidc": "^3.556.0",
     "@aws-sdk/middleware-logger": "^3.535.0",
     "@smithy/core": "^1.4.2",
     "@smithy/middleware-retry": "^2.3.1",
@@ -31,6 +31,7 @@
     "@types/aws-lambda": "^8.10.137",
     "aws-cdk-github-oidc": "^2.4.1",
     "aws-cdk-lib": "2.137.0",
+    "cdk-nag": "^2.28.91",
     "constructs": "^10.3.0",
     "dotenv": "^16.4.5",
     "source-map-support": "^0.5.21"

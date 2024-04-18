@@ -5,6 +5,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as dotenv from 'dotenv';
 import { Aspects } from 'aws-cdk-lib';
 import { ApplyTags } from '../utils/apply-tag';
+import { AwsSolutionsChecks } from 'cdk-nag';
 import { checkEnvVariables } from '../utils/check-environment-variable';
 import { AwsGithubOidcRolesStackProps } from '../lib/AwsGithubOidcRolesStackProps';
 import { AwsGithubOidcRolesStack } from '../lib/aws-github-oidc-roles-stack';
@@ -23,6 +24,7 @@ checkEnvVariables('APP_NAME', 'GITHUB_ORG_NAME', 'GITHUB_REPOS_NAME', 'OPENID_CO
 const appName = process.env.APP_NAME!;
 const owner = process.env.OWNER!;
 
+// apply tags to all resources
 appAspects.add(new ApplyTags({
   environment: deployEnvironment as 'development' | 'staging' | 'production' | 'demonstration',
   project: appName,

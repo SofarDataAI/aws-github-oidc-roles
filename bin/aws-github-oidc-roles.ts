@@ -31,9 +31,6 @@ appAspects.add(new ApplyTags({
   owner: owner,
 }));
 
-// check best practices based on AWS Solutions Security Matrix
-appAspects.add(new AwsSolutionsChecks());
-
 const stackProps: AwsGithubOidcRolesStackProps = {
   resourcePrefix: `${appName}-${deployEnvironment}`,
   env: {

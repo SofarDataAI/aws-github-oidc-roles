@@ -5,7 +5,6 @@ import * as cdk from 'aws-cdk-lib';
 import * as dotenv from 'dotenv';
 import { Aspects } from 'aws-cdk-lib';
 import { ApplyTags } from '../utils/apply-tag';
-import { AwsSolutionsChecks } from 'cdk-nag';
 import { checkEnvVariables } from '../utils/check-environment-variable';
 import { AwsGithubOidcRolesStackProps } from '../lib/AwsGithubOidcRolesStackProps';
 import { AwsGithubOidcRolesStack } from '../lib/aws-github-oidc-roles-stack';

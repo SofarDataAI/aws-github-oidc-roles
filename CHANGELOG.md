@@ -1,3 +1,11 @@
+## 2024-06-02
+
+### Changed
+- Updated project to version 0.2.3.
+- Increased Node.js engine requirement to version 16.0.0 or higher.
+- Upgraded various dependencies including AWS SDK, Smithy, AWS CDK, and related libraries to their latest versions.
+- Updated TypeScript and Jest related packages to ensure compatibility with new dependencies.
+
 ## 2024-04-18
 
 ### Added

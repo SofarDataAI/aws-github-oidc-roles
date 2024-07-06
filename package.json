@@ -1,6 +1,6 @@
 {
   "name": "aws-github-oidc-roles",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "bin": {
     "aws-github-oidc-roles": "bin/aws-github-oidc-roles.js"
   },

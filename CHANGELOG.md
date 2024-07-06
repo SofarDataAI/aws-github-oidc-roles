@@ -1,3 +1,11 @@
+## 2024-07-06
+
+### Changed
+- Updated project to version 0.2.4.
+- Upgraded `aws-cdk` and related libraries.
+- Updated multiple dependencies including `aws-sdk`, `smithy`, and others to their latest versions.
+- Removed outdated dependencies and added new ones.
+
 ## 2024-06-02
 
 ### Changed

@@ -1,3 +1,13 @@
+## 2024-09-02
+
+### Changed
+- Updated project to version 0.2.5.
+- Upgraded `aws-cdk` from `2.148.0` to `2.155.0` and related libraries.
+- Updated multiple dependencies including `@aws-sdk/client-iam`, `@aws-sdk/client-sso-oidc`, and `@smithy/core` to their latest versions.
+
+### Added
+- Added checks for new environment variables `CDK_DEPLOY_REGION` and `ENVIRONMENT`.
+
 ## 2024-07-06
 
 ### Changed

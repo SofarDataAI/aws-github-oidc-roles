@@ -13,13 +13,14 @@ dotenv.config(); // Load environment variables from .env file
 const app = new cdk.App();
 const appAspects = Aspects.of(app);
 
-const { CDK_DEFAULT_ACCOUNT: account, CDK_DEFAULT_REGION: region } = process.env;
+// check environment variables
+checkEnvVariables('APP_NAME', 'GITHUB_ORG_NAME', 'GITHUB_REPOS_NAME', 'OPENID_CONNECT_PROVIDER_ARN', 'OWNER', 'CDK_DEPLOY_REGION', 'ENVIRONMENT');
+
+const { CDK_DEFAULT_ACCOUNT: account } = process.env;
 
 const cdkRegion = process.env.CDK_DEPLOY_REGION!;
 const deployEnvironment = process.env.ENVIRONMENT!;
 
-// check environment variables
-checkEnvVariables('APP_NAME', 'GITHUB_ORG_NAME', 'GITHUB_REPOS_NAME', 'OPENID_CONNECT_PROVIDER_ARN', 'OWNER');
 const appName = process.env.APP_NAME!;
 const owner = process.env.OWNER!;
 
